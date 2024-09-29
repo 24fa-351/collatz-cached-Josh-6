@@ -2,11 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <inttypes.h>
+//#include "map.h"
+#include "collatz_calc.h"
 
-typedef int64_t (*Functionpointer)(int);
-Functionpointer fib_provider = NULL;
-
-int64_t collatz(int64_t number)
+int64_t collat(int64_t number)
 {
     if (number % 2 == 0)
     {
@@ -16,8 +15,6 @@ int64_t collatz(int64_t number)
     {   
         return (3 * number) + 1;
     }
-
-    return number;
 }
 
 int64_t step_counter(int num)
@@ -33,36 +30,8 @@ int64_t step_counter(int num)
     return steps;
 }
 
-int64_t *memo = NULL;
-int64_t fib_memo(int user_num)
-{
-   if (memo == NULL)
-   {
-      memo = (int64_t *)malloc((1000) * sizeof(int64_t));
-      
-      for (int i = 0; i < 1000; i++)
-      {
-         memo[i] = -1;
-      }
-   }
-
-
-   if (memo[user_num] == -1)
-   {
-      memo[user_num] = collatz(user_num);
-      //printf("Adding to cache: %d\n", user_num);
-   }
-   /*else
-   {
-      printf("Recieving from cache: %d\n", user_num);
-   }*/
-
-   return memo[user_num];
-}
-
 int main(int argc, char *argv[])
 {
-
     int num_of_rand = atoi(argv[1]);
     int min = atoi(argv[2]);
     int max = atoi(argv[3]);
