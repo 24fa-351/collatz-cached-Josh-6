@@ -13,20 +13,9 @@ int64_t collatz(int64_t number)
     }
     else
     {   
-        return memo((3 * number) + 1);
+        return (3 * number) + 1;
     }
 }
 
-int64_t collat(int64_t number)
-{
-    if (number % 2 == 0)
-    {
-        return number/2;
-    }
-    else
-    {   
-        return memo((3 * number) + 1);
-    }
-}
 
 #endif //collatz_calc

@@ -9,8 +9,11 @@ int MAX_SIZE;
 
 int size = 0; // Current number of elements in the map
 
-typedef int64_t (*Functionpointer)(int);
+typedef int64_t (*Functionpointer)(int64_t);
 Functionpointer fib_provider = NULL;
+
+int64_t *memo_num = NULL;
+int64_t *memo_steps = NULL;
 
 int getIndex(int key)
 {
@@ -63,12 +66,11 @@ void printMap()
     }
 }
 
-int64_t *memo_num = NULL;
-int64_t *memo_steps = NULL;
+
 int steps = 0;
 int hits = 0;
 int miss = 0;
-int64_t memo(int num)
+int64_t memo(int64_t num)
 {
     if (memo_num == NULL)
     {
@@ -81,9 +83,9 @@ int64_t memo(int num)
         }
     }
     int code = 1;
-    if(num != 1)
+    while(num != 1)
     {
-        num = collat(num);
+        num = collatz(num);
         steps++;
     }
     if (memo_num[size] == -1)
